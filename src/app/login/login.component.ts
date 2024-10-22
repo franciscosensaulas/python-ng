@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -7,7 +8,7 @@ import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
-  selector: 'app-componentes',
+  selector: 'app-login',
   standalone: true,
   imports: [
     InputTextModule,
@@ -17,19 +18,27 @@ import { ToastModule } from 'primeng/toast';
     PasswordModule,
   ],
   providers: [MessageService],
-  templateUrl: './componentes.component.html',
-  styleUrl: './componentes.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class ComponentesComponent {
+export class LoginComponent {
   login: string = "";
   senha: string = "";
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    // Necessário para poder apresentar mensagem de feeback para o usuário
+    private messageService: MessageService,
+    // Necessário para poder redirecionar para outra rota
+    private router: Router,
+  ) { }
 
   enviar() {
+    // Verificar se o login e senha estão corretos
     if (this.login == "admin" && this.senha == "batatinha") {
-
+      // Redirecionar para a tela da home
+      this.router.navigate(["/home"])
     } else {
+      // Apresentar mensagem que o login/senha estão inválidos
       this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Login e/ou Senha inválidas' });
     }
   }
