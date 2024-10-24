@@ -1,0 +1,46 @@
+<p-toast/>
+<div class="flex justify-content-center align-content-center flex-wrap" style="min-height: 100vh">
+    <p-panel header="Faça seu login">
+        <div class="card flex flex-column gap-3">
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="nome">Nome</label>
+                    <input pInputText id="nome" aria-describedby="nome-help" [(ngModel)]="nome" />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <label for="cpf">CPF</label>
+                    <p-inputMask mask="999.999.999-99" [(ngModel)]="cpf" placeholder="000.000.000-00" />
+                </div>
+            </div>
+
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="e-mail">E-mail</label>
+                    <input pInputText id="e-mail" aria-describedby="e-mail-help" [(ngModel)]="email" />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <label for="senha">Senha</label>
+                    <p-password [(ngModel)]="senha" [feedback]="false" />
+                </div>
+            </div>
+
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="dataNascimento">Data Nascimento</label>
+                    <p-calendar [(ngModel)]="dataNascimento" />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <label for="cep">CEP</label>
+                    <p-inputMask mask="99.999-999" [(ngModel)]="cep" placeholder="00.000-000" 
+                        (onBlur)="buscarEndereco()" />
+                </div>
+            </div>
+            <span>Endereço: {{estado}} {{cidade}} {{bairro}} {{logradouro}}</span>
+
+            <div class="flex justify-content-end flex-wrap">
+                <p-button class="flex justify-content-center" label="Cadastrar" severity="help"
+                    (onClick)="cadastrar()" />
+            </div>
+        </div>
+    </p-panel>
+</div>

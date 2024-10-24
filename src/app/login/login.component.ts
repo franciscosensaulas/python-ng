@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 
@@ -16,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     ToastModule,
     PasswordModule,
+    PanelModule,
   ],
   providers: [MessageService],
   templateUrl: './login.component.html',
@@ -41,6 +43,10 @@ export class LoginComponent {
       // Apresentar mensagem que o login/senha estão inválidos
       this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Login e/ou Senha inválidas' });
     }
+  }
+
+  redirecionarCadastrar(){
+    this.router.navigate(["/cadastrar"])
   }
 }
  

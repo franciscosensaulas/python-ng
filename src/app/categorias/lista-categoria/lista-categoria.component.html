@@ -1,16 +1,39 @@
 <div class="card">
+    <div class="flex justify-content-end flex-wrap mb-3">
+        <p-button label="Cadastrar" (onClick)="abrirModal()" />
+    </div>
+
     <p-table [value]="categorias" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
-                <th>Code</th>
-                <th>Name</th>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Ação</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-categoria>
             <tr>
                 <td>{{ categoria.id }}</td>
                 <td>{{ categoria.nome }}</td>
+                <td>
+
+                    <p-button label="Editar" class="mr-2" />
+                    <p-button label="Apagar" severity="danger" outlined="true" />
+                </td>
             </tr>
         </ng-template>
     </p-table>
+</div>
+<div class="card flex justify-content-center">
+
+    <p-dialog header="Cadastro de categoria" [modal]="true" [(visible)]="modalApresentada" [style]="{ width: '25rem' }">
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="nome" class="font-semibold w-6rem">Nome</label>
+            <input pInputText id="nome" class="flex-auto" autocomplete="off" [(ngModel)]="nome" />
+        </div>
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Cancelar" severity="secondary" (onClick)="modalApresentada = false" />
+            <p-button label="Salvar" (onClick)="modalApresentada = false" />
+        </div>
+    </p-dialog>
 </div>
