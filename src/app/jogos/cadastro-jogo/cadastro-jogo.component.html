@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+
+<div class="mt-3">
+    <p-panel header="Cadastro de Jogo">
+        <div class="card flex flex-column gap-3">
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="nome">Nome</label>
+                    <input pInputText id="nome" aria-describedby="nome-help" [(ngModel)]="nome" />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <div class="flex flex-column gap-2">
+                        <label for="preco">Preço</label>
+                        <p-inputNumber 
+                            [(ngModel)]="preco" 
+                            inputId="preco"  
+                            mode="currency" 
+                            currency="BRL" 
+                            locale="pt-BR"
+                            [minFractionDigits]="2" 
+                            [maxFractionDigits]="2" /> 
+                    </div>
+                </div>
+                <div class="flex flex-column gap-2">
+                    <label for="desenvolvedora">Desenvolvedora</label>
+                    <p-dropdown 
+                        [options]="desenvolvedoras" 
+                        [(ngModel)]="desenvolvedora"
+                        optionLabel="nome"
+                        optionValue="nome"
+                        placeholder="Escolha a desenvolvedora" />
+                </div>
+            </div>
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="dataLancamento">Data de Lançamento</label>
+                    <p-calendar id="dataLancamento" [(ngModel)]="dataLancamento"
+                        dateFormat="dd/mm/yy"  />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <label for="classificacao">Classificação Metacritic</label>
+                    <p-rating id="classificacao" [(ngModel)]="classificacao" [cancel]="false" />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <label for="tags">Tags</label>
+                    <p-chips id="tags" [(ngModel)]="tags" />
+                </div>
+            </div>
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="categoria">Categoria</label>
+                    <p-dropdown 
+                        [options]="categorias" 
+                        [(ngModel)]="categoria"
+                        optionLabel="nome"
+                        optionValue="id"
+                        placeholder="Escolha a categoria" />
+                </div>
+                <div class="flex flex-column gap-2">
+                    <span>Plataforma</span>
+                    <div class="flex flex-row gap-2" *ngFor="let nomePlataforma of this.plataformas">
+                        <p-checkbox 
+                            [(ngModel)]="plataforma" 
+                            value="{{nomePlataforma}}" 
+                            inputId="plataforma-{{nomePlataforma}}" />
+                        <label for="plataforma-{{nomePlataforma}}">{{nomePlataforma}}</label>
+                    </div>
+                </div>
+                <div class="flex flex-column gap-2">
+                    <span>Disponível para venda</span>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex align-items-center">
+                            <p-radioButton 
+                                value="true" 
+                                [(ngModel)]="disponivelVenda" 
+                                inputId="disponivelVendaSim" />
+                            <label for="disponivelVendaSim" class="ml-2">
+                                Sim
+                            </label>
+                        </div>
+                        
+                        <div class="flex align-items-center">
+                            <p-radioButton 
+                                value="false" 
+                                [(ngModel)]="disponivelVenda" 
+                                inputId="disponivelVendaNao" />
+                            <label for="disponivelVendaNao" class="ml-2">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <p-fileUpload 
+                        mode="basic" 
+                        chooseLabel="Escolha a imagem" 
+                        chooseIcon="pi pi-upload"
+                        name="imagem" 
+                        accept="image/*" 
+                        auto="false"
+                        maxFileSize="1000000" />
+                </div>
+            </div>
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="descricao">Descrição</label>
+                    <textarea 
+                        rows="5"
+                        cols="30" 
+                        pInputTextarea 
+                        id="descricao"
+                        [(ngModel)]="descricao">
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-content-end flex-wrap mb-3">
+                <p-button label="Salvar" severity="success" />
+            </div>
+        </div>
+    </p-panel>
+</div>

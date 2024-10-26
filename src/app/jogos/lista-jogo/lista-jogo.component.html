@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="flex justify-content-end flex-wrap mb-3">
+        <p-button label="Cadastrar" (onClick)="acessarCadastro()" />
+    </div>
+
+    <p-table [value]="jogos" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Código</th>
+                <th>Foto</th>
+                <th>Categoria</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Ação</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-jogo>
+            <tr>
+                <td>{{ jogo.id }}</td>
+                <td>
+                    <p-image src="{{jogo.foto}}" alt="{{jogo.nome}}" width="75" [preview]="true" />
+                </td>
+                <td>{{jogo.categoria}}</td>
+                <td>{{ jogo.nome }}</td>
+                <td>{{jogo.preco}}</td>
+                <td>
+                    <p-button label="Editar" class="mr-2" />
+                    <p-button label="Apagar" severity="danger" outlined="true" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

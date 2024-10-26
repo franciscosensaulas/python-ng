@@ -1,0 +1,25 @@
+<div class="card flex justify-content-center">
+    <p-accordion [multiple]="true" [activeIndex]="[3]">
+
+        <p-accordionTab header="Categoria">
+            <app-filtro-categoria></app-filtro-categoria>
+        </p-accordionTab>
+
+        <p-accordionTab header="Desenvolvedora">
+            <app-filtro-desenvolvedora></app-filtro-desenvolvedora>
+        </p-accordionTab>
+
+        <p-accordionTab header="Plataforma">
+            <app-filtro-plataforma></app-filtro-plataforma>
+        </p-accordionTab>
+
+        <p-accordionTab header="Preço">
+            <app-filtro-preco></app-filtro-preco>
+        </p-accordionTab>
+
+        <p-accordionTab header="Tag">
+            <app-filtro-tag></app-filtro-tag>
+        </p-accordionTab>
+
+    </p-accordion>
+</div>

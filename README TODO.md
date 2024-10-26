@@ -21,7 +21,7 @@
   - Tela de lista de jogos (tabela)
   - Cadastro de jogos
     - Nome (inputtext)
-    - Preço (inputmask)
+    - Preço (inputNumber)
     - Desenvolvedora  (dropdown)
     - Data de Lançamento (calendar)
     - Classificação Metacritic (rating)

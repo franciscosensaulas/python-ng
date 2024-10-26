@@ -1,0 +1,9 @@
+<div class="flex justify-content-between mb-2 gap-2">
+    <span>Mínimo: {{valorMinimo}}</span> 
+    <span>Máximo: {{valorMaximo}}</span>
+</div>
+<p-slider 
+    [(ngModel)]="rangeValues" 
+    [range]="true" 
+    styleClass="w-14rem" 
+    (onChange)="alterarPreco()" />
