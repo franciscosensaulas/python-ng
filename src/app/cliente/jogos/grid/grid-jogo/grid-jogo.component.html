@@ -1,8 +1,23 @@
-<div class="grid">
+<div class="grid m-2">
 
     <app-filtros class="col-2"></app-filtros>
     
-    <div class="col">
-        <h1>Grid de jogos</h1>
+    <div class="col ml-2">
+        <div class="card flex flex-row flex-wrap gap-4 justify-content-center">
+            <p-card header="{{jogo.nome}}" 
+                subheader="{{jogo.categoria}}" 
+                [style]="{ width: '360px' }"
+                *ngFor="let jogo of jogos; ">
+                <ng-template pTemplate="header">
+                    <img alt="Card" src="{{jogo.foto}}" />
+                </ng-template>
+                <p>{{jogo.descricao}}</p>
+                <ng-template pTemplate="footer">
+                    <div class="flex gap-3 mt-1">
+                        <p-button label="Comprar" class="w-full" styleClass="w-full" />
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
     </div>
 </div>

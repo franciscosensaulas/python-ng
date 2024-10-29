@@ -58,12 +58,12 @@
                 </div>
                 <div class="flex flex-column gap-2">
                     <span>Plataforma</span>
-                    <div class="flex flex-row gap-2" *ngFor="let nomePlataforma of this.plataformas">
+                    <div class="flex flex-row gap-2" *ngFor="let plataformaDado of this.plataformas">
                         <p-checkbox 
                             [(ngModel)]="plataforma" 
-                            value="{{nomePlataforma}}" 
-                            inputId="plataforma-{{nomePlataforma}}" />
-                        <label for="plataforma-{{nomePlataforma}}">{{nomePlataforma}}</label>
+                            label="{{plataformaDado.nome}}"
+                            value="{{plataformaDado.nome}}" 
+                            inputId="plataforma-{{plataformaDado.nome}}" />
                     </div>
                 </div>
                 <div class="flex flex-column gap-2">

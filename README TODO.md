@@ -41,8 +41,8 @@
     - Filtrar por categoria  (dropdown)
     - FIltrar por tags (checkbox)
     - Filtrar por plataformas (dropdown)
-    - Desenvolvedora (dropdown)
-    - Preço min max (slider range)
+    - Filtrar Desenvolvedora (dropdown)
+    - Filtrar Preço min max (slider range)
     - Apresentar os jogos em um grid de cards
     - Slider 
 

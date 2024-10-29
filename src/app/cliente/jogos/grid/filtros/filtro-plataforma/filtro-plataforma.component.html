@@ -1,1 +1,6 @@
-<p>filtro-plataforma works!</p>
+<p-multiSelect 
+    [options]="plataformasDisponiveis" 
+    [(ngModel)]="plataformas" 
+    optionLabel="nome" 
+    optionValue="nome"
+    placeholder="Escolha a plataforma" />

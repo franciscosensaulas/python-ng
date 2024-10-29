@@ -1,1 +1,9 @@
-<p>filtro-desenvolvedora works!</p>
+<div class="flex flex-column gap-2">
+
+    <p-checkbox *ngFor="let desnevolvedoraDado of this.desenvolvedorasDisponiveis"
+        [(ngModel)]="desenvolvedoras" 
+        label="{{desnevolvedoraDado.nome}}"
+        value="{{desnevolvedoraDado.nome}}" 
+        inputId="desnevolvedora-{{desnevolvedoraDado.nome}}"/>
+    
+</div>
