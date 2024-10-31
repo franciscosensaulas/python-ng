@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+<p-confirmDialog />
 <div class="card">
     <div class="flex justify-content-end flex-wrap mb-3">
         <p-button label="Cadastrar" (onClick)="abrirModal()" />
@@ -17,8 +19,8 @@
                 <td>{{ categoria.nome }}</td>
                 <td>
 
-                    <p-button label="Editar" class="mr-2" />
-                    <p-button label="Apagar" severity="danger" outlined="true" />
+                    <p-button label="Editar" class="mr-2" (onClick)="carregarModalParaEditar(categoria.id)"/>
+                    <p-button label="Apagar" severity="danger" outlined="true" (onClick)="confirmacaoExclusao($event, categoria)" />
                 </td>
             </tr>
         </ng-template>
@@ -33,7 +35,7 @@
         </div>
         <div class="flex justify-content-end gap-2">
             <p-button label="Cancelar" severity="secondary" (onClick)="modalApresentada = false" />
-            <p-button label="Salvar" (onClick)="modalApresentada = false" />
+            <p-button label="Salvar" (onClick)="salvar()" />
         </div>
     </p-dialog>
 </div>

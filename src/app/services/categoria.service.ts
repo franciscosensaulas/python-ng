@@ -1,28 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Categoria } from '../models/categoria';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  obterTodas() : Observable<Categoria[]>{
-    let categorias = [
-      { nome: "Ação", id: 1 },
-      { nome: "Aventura", id: 2 },
-      { nome: "RPG", id: 3 },
-      { nome: "Estratégia", id: 4 },
-      { nome: "Simulação", id: 5 },
-      { nome: "Esporte", id: 6 },
-      { nome: "Tiro em Primeira Pessoa", id: 7 },
-      { nome: "Plataforma", id: 8 },
-      { nome: "Horror", id: 9 },
-      { nome: "Multiplayer Online", id: 10 }
-    ];
-    categorias.sort((a, b) => a.nome.localeCompare(b.nome));
-    return of(categorias);
+  obterTodas(): Observable<Categoria[]> {
+    return this.httpClient.get<Categoria[]>("http://127.0.0.1:8000/api/categorias/");
+  }
+
+  cadastrar(nome: string): Observable<any> {
+    let dados = {
+      nome
+    }
+    return this.httpClient.post("http://127.0.0.1:8000/api/categorias/", dados);
+  }
+
+  apagar(id: number): Observable<any> {
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/categorias/${id}/`);
+  }
+
+  obterPorId(id: number): Observable<Categoria> {
+    return this.httpClient.get<Categoria>(`http://127.0.0.1:8000/api/categorias/${id}/`);
+  }
+
+  editar(id: number, nome: string): Observable<any> {
+    let dados = {
+      nome
+    }
+    return this.httpClient.put(`http://127.0.0.1:8000/api/categorias/${id}/`, dados);
   }
 }
