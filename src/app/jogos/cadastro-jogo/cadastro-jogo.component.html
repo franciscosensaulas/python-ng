@@ -6,13 +6,13 @@
             <div class="flex gap-7">
                 <div class="flex flex-column gap-2">
                     <label for="nome">Nome</label>
-                    <input pInputText id="nome" aria-describedby="nome-help" [(ngModel)]="nome" />
+                    <input pInputText id="nome" aria-describedby="nome-help" [(ngModel)]="jogoForm.nome" />
                 </div>
                 <div class="flex flex-column gap-2">
                     <div class="flex flex-column gap-2">
                         <label for="preco">Preço</label>
                         <p-inputNumber 
-                            [(ngModel)]="preco" 
+                            [(ngModel)]="jogoForm.preco" 
                             inputId="preco"  
                             mode="currency" 
                             currency="BRL" 
@@ -25,7 +25,7 @@
                     <label for="desenvolvedora">Desenvolvedora</label>
                     <p-dropdown 
                         [options]="desenvolvedoras" 
-                        [(ngModel)]="desenvolvedora"
+                        [(ngModel)]="jogoForm.desenvolvedora"
                         optionLabel="nome"
                         optionValue="nome"
                         placeholder="Escolha a desenvolvedora" />
@@ -34,16 +34,16 @@
             <div class="flex gap-7">
                 <div class="flex flex-column gap-2">
                     <label for="dataLancamento">Data de Lançamento</label>
-                    <p-calendar id="dataLancamento" [(ngModel)]="dataLancamento"
+                    <p-calendar id="dataLancamento" [(ngModel)]="jogoForm.dataLancamento"
                         dateFormat="dd/mm/yy"  />
                 </div>
                 <div class="flex flex-column gap-2">
                     <label for="classificacao">Classificação Metacritic</label>
-                    <p-rating id="classificacao" [(ngModel)]="classificacao" [cancel]="false" />
+                    <p-rating id="classificacao" [(ngModel)]="jogoForm.classificacao" [cancel]="false" />
                 </div>
                 <div class="flex flex-column gap-2">
                     <label for="tags">Tags</label>
-                    <p-chips id="tags" [(ngModel)]="tags" />
+                    <p-chips id="tags" [(ngModel)]="jogoForm.tags" />
                 </div>
             </div>
             <div class="flex gap-7">
@@ -51,7 +51,7 @@
                     <label for="categoria">Categoria</label>
                     <p-dropdown 
                         [options]="categorias" 
-                        [(ngModel)]="categoria"
+                        [(ngModel)]="jogoForm.categoria"
                         optionLabel="nome"
                         optionValue="id"
                         placeholder="Escolha a categoria" />
@@ -60,7 +60,7 @@
                     <span>Plataforma</span>
                     <div class="flex flex-row gap-2" *ngFor="let plataformaDado of this.plataformas">
                         <p-checkbox 
-                            [(ngModel)]="plataforma" 
+                            [(ngModel)]="jogoForm.plataforma" 
                             label="{{plataformaDado.nome}}"
                             value="{{plataformaDado.nome}}" 
                             inputId="plataforma-{{plataformaDado.nome}}" />
@@ -72,7 +72,7 @@
                         <div class="flex align-items-center">
                             <p-radioButton 
                                 value="true" 
-                                [(ngModel)]="disponivelVenda" 
+                                [(ngModel)]="jogoForm.disponivelVenda" 
                                 inputId="disponivelVendaSim" />
                             <label for="disponivelVendaSim" class="ml-2">
                                 Sim
@@ -82,7 +82,7 @@
                         <div class="flex align-items-center">
                             <p-radioButton 
                                 value="false" 
-                                [(ngModel)]="disponivelVenda" 
+                                [(ngModel)]="jogoForm.disponivelVenda" 
                                 inputId="disponivelVendaNao" />
                             <label for="disponivelVendaNao" class="ml-2">
                                 Não
@@ -98,8 +98,10 @@
                         chooseLabel="Escolha a imagem" 
                         chooseIcon="pi pi-upload"
                         name="imagem" 
-                        accept="image/*" 
-                        auto="false"
+                        url="https://www.primefaces.org/cdn/api/upload.php" 
+                        accept="image/*"
+                        auto="true"
+                        (onUpload)="armazenarFoto($event)"
                         maxFileSize="1000000" />
                 </div>
             </div>
@@ -111,14 +113,16 @@
                         cols="30" 
                         pInputTextarea 
                         id="descricao"
-                        [(ngModel)]="descricao">
+                        [(ngModel)]="jogoForm.descricao">
                     </textarea>
                 </div>
             </div>
 
             <div class="flex justify-content-end flex-wrap mb-3">
-                <p-button label="Salvar" severity="success" />
+                <p-button label="Salvar" severity="success" (onClick)="salvar()" />
             </div>
         </div>
     </p-panel>
 </div>
+
+Imagem: {{jogoForm.imagem}}

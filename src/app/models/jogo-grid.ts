@@ -5,6 +5,6 @@ export interface JogoGrid{
     preco: number,
     desenvolvedora: string,
     tags: string[],
-    foto: string,
+    imagem: string,
     categoria: string
 }
