@@ -8,6 +8,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { ClienteCadastro } from '../../models/cliente-cadastro';
+import { ClienteService } from '../../services/cliente.service';
 
 interface Endereco{
   uf: string,
@@ -44,7 +46,10 @@ export class CadastroUsuarioComponent {
   bairro: string = "";
   logradouro: string = "";
 
-  constructor(private httpClient: HttpClient, private messageService: MessageService){
+  constructor(
+    private httpClient: HttpClient, 
+    private messageService: MessageService,
+    private clienteService: ClienteService){
   }
 
   buscarEndereco(){
@@ -65,6 +70,24 @@ export class CadastroUsuarioComponent {
   }
 
   cadastrar(){
-    this.buscarEndereco();
+    let clienteCadastro = new ClienteCadastro();
+    clienteCadastro.nome = this.nome;
+    clienteCadastro.cep = this.cep;
+    clienteCadastro.cpf = this.cpf;
+    clienteCadastro.dataNascimento = this.dataNascimento.toISOString().slice(0, 10);
+    clienteCadastro.email = this.email;
+    clienteCadastro.senha = this.senha;
+    clienteCadastro.username = "francisco";
+
+    this.clienteService.cadastrar(clienteCadastro).subscribe({
+      next: dado => {
+        console.log(dado);
+        alert("Cliente cadastrado com sucesso");
+      },
+      error: erro => {
+        console.error(erro);
+        alert("Não foi possível cadastrar o cliente");
+      }
+    })
   }
 }
