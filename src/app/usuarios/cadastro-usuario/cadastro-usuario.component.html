@@ -15,12 +15,19 @@
 
             <div class="flex gap-7">
                 <div class="flex flex-column gap-2">
-                    <label for="e-mail">E-mail</label>
-                    <input pInputText id="e-mail" aria-describedby="e-mail-help" [(ngModel)]="email" />
+                    <label for="usuario">Usuário</label>
+                    <input pInputText id="usuario" aria-describedby="usuario-help" [(ngModel)]="usuario" />
                 </div>
                 <div class="flex flex-column gap-2">
                     <label for="senha">Senha</label>
                     <p-password [(ngModel)]="senha" [feedback]="false" />
+                </div>
+            </div>
+
+            <div class="flex gap-7">
+                <div class="flex flex-column gap-2">
+                    <label for="e-mail">E-mail</label>
+                    <input pInputText id="e-mail" aria-describedby="e-mail-help" [(ngModel)]="email" />
                 </div>
             </div>
 

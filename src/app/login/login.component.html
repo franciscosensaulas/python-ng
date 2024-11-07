@@ -5,11 +5,11 @@
         <div class="flex flex-column gap-4">
             <div class="flex flex-column gap-2">
                 <label for="login">Login</label>
-                <input pInputText id="login" aria-describedby="login-help" [(ngModel)]="login" autofocus />
+                <input pInputText (keydown.enter)="focoCampoSenha()" id="login" aria-describedby="login-help" [(ngModel)]="login" autofocus />
             </div>
             <div class="flex flex-column gap-2">
                 <label for="senha">Senha</label>
-                <p-password [(ngModel)]="senha" [toggleMask]="true" [feedback]="false" />
+                <p-password [(ngModel)]="senha" #senhaCampo [toggleMask]="true" [feedback]="false" (keydown.enter)="enviar()" />
             </div>
             <div class="flex flex-column gap-2">
                 <p-button class="flex justify-content-center" label="Enviar" severity="help" (onClick)="enviar()" />

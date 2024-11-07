@@ -10,6 +10,7 @@ import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { ClienteCadastro } from '../../models/cliente-cadastro';
 import { ClienteService } from '../../services/cliente.service';
+import { Router } from '@angular/router';
 
 interface Endereco{
   uf: string,
@@ -45,11 +46,13 @@ export class CadastroUsuarioComponent {
   cidade: string = "";
   bairro: string = "";
   logradouro: string = "";
+  usuario: string = "";
 
   constructor(
     private httpClient: HttpClient, 
     private messageService: MessageService,
-    private clienteService: ClienteService){
+    private clienteService: ClienteService,
+    private router: Router){
   }
 
   buscarEndereco(){
@@ -77,14 +80,16 @@ export class CadastroUsuarioComponent {
     clienteCadastro.dataNascimento = this.dataNascimento.toISOString().slice(0, 10);
     clienteCadastro.email = this.email;
     clienteCadastro.senha = this.senha;
-    clienteCadastro.username = "francisco";
+    clienteCadastro.username = this.usuario;
 
     this.clienteService.cadastrar(clienteCadastro).subscribe({
       next: dado => {
-        console.log(dado);
+        debugger;
         alert("Cliente cadastrado com sucesso");
+        this.router.navigate(["login"]);
       },
       error: erro => {
+        debugger;
         console.error(erro);
         alert("Não foi possível cadastrar o cliente");
       }

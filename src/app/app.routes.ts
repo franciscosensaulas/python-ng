@@ -6,6 +6,8 @@ import { CadastroUsuarioComponent } from './usuarios/cadastro-usuario/cadastro-u
 import { ListaJogoComponent } from './jogos/lista-jogo/lista-jogo.component';
 import { CadastroJogoComponent } from './jogos/cadastro-jogo/cadastro-jogo.component';
 import { GridJogoComponent } from './cliente/jogos/grid/grid-jogo/grid-jogo.component';
+import { autenticacaoGuard } from './guards/autenticacao.guard';
+import { GraficosComponent } from './cliente/jogos/graficos/graficos.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -15,6 +17,7 @@ export const routes: Routes = [
     { path: "cadastrar", component: CadastroUsuarioComponent },
     { path: "jogos", component: ListaJogoComponent },
     { path: "jogos/cadastro", component: CadastroJogoComponent },
-    { path: "grid", component: GridJogoComponent },
+    { path: "grid", component: GridJogoComponent, canActivate: [autenticacaoGuard] },
+    { path: "grafico", component: GraficosComponent, canActivate: [autenticacaoGuard] },
     { path: "**", redirectTo: "/login" } // Redirecionar qualquer rota não existente redirecionará para o login 
 ];

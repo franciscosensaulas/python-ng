@@ -4,6 +4,9 @@ import { JogoGrid } from '../models/jogo-grid';
 import { JogoLista } from '../models/jogo-lista';
 import { HttpClient } from '@angular/common/http';
 import { JogoForm } from '../models/jogo-form';
+import { JogoGrafico } from '../models/jogo-grafico';
+import { environment } from '../environments/environment';
+const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +16,11 @@ export class JogoService {
   constructor(private httpClient: HttpClient) { }
 
   obterParaLista(): Observable<JogoLista[]> {
-    return this.httpClient.get<JogoLista[]>("http://localhost:8000/api/jogos/");
+    return this.httpClient.get<JogoLista[]>(`${apiUrl}/jogos/`);
   }
 
   obterParaGrid(): Observable<JogoGrid[]> {
-    return this.httpClient.get<JogoGrid[]>("http://localhost:8000/api/jogos/");
+    return this.httpClient.get<JogoGrid[]>(`${apiUrl}/jogos/`);
   }
 
   cadastrar(jogoForm: JogoForm) {
@@ -34,7 +37,10 @@ export class JogoService {
     data.append('plataforma', jogoForm.plataforma!.toString())
     data.append('disponivel_venda', jogoForm.disponivelVenda!.toString())
 
+    return this.httpClient.post<any>(`${apiUrl}/jogos/`, data);
+  }
 
-    return this.httpClient.post<any>("http://localhost:8000/api/jogos/", data);
+  obterJogoPorCategoria(): Observable<JogoGrafico[]> {
+    return this.httpClient.get<JogoGrafico[]>(`${apiUrl}/jogos-por-categoria`);
   }
 }
